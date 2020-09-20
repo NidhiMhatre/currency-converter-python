@@ -1,0 +1,77 @@
+from tkinter import *
+import re
+import emoji
+window=Tk()
+window.geometry('400x400')
+window.title("CURRENCY CONVERTER")
+window.configure(bg="gray")
+
+def destroy():
+    window.destroy()
+
+def clear():
+    entry1.delete(0,END)
+    entry4.delete(0,END)
+    
+def convert():
+    
+    x=int(entry1.get())      
+    y=rt.get()
+    z=rt1.get()
+    if y=="INR":
+        if z=="INR":
+            entry4.insert(0,x)
+        elif z=="EURO":
+            entry4.insert(0,(x*0.012))
+        else:
+            entry4.insert(0,(x*0.013))
+    elif y=="EURO":
+        if z=="INR":
+            entry4.insert(0,(x*82.90))
+        elif z=="EURO":
+            entry4.insert(0,(x))
+        else:
+            entry4.insert(0,(x*1.10))
+    else:
+        if z=="INR":
+            entry4.insert(0,(x*75.61))
+        elif z=="EURO":
+            entry4.insert(0,(x*0.091))
+        else:
+            entry4.insert(0,(x))
+    
+
+
+
+    
+l1=Label(window,text="ENTER THE AMOUNT TO BE CONVERTED",height=1,font="Seriff 12 ",bg="gray",fg="black")
+l1.place(x=30,y=25.0)
+entry1=Entry(window)
+entry1.place(x=30,y=55,width=320)
+l2=Label(window,text="CONVERT FROM:",height=1,font="Seriff 12 ",bg="gray",fg="black")
+l2.place(x=30,y=105.0)
+l3=Label(window,text="CONVERT INTO:",height=1,font="Seriff 12 ",bg="gray",fg="black")
+l3.place(x=30,y=150.0)
+l4=Label(window,text="CONVERTED AMOUNT",height=1,font="Seriff 12 italic",bg="gray",fg="black")
+l4.place(x=100,y=200.0)
+entry4=Entry(window)
+entry4.place(x=30,y=230,width=320,height=30)
+bt1=Button(window,text="CLEAR  ",font='Times 10 bold italic',fg="blue",command=clear)
+bt1.place(x=30,y=300)
+bt2=Button(window,text="CONVERT",font='Times 10 bold italic',fg="blue",command=convert)
+bt2.place(x=150,y=300)
+bt3=Button(window,text=" EXIT  ",font='Times 10 bold italic',fg="blue",command=destroy)
+bt3.place(x=295.0,y=300)
+
+
+rt=StringVar(window)
+list1=["INR","EURO","DOLLAR"]
+gender=OptionMenu(window,rt,*list1)
+gender.place(x=180,y=105)
+rt.set("SELECT")
+
+rt1=StringVar(window)
+list2=["INR","EURO","DOLLAR"]
+gender1=OptionMenu(window,rt1,*list2)
+gender1.place(x=180,y=150)
+rt1.set("SELECT")
